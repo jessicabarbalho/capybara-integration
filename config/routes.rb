@@ -1,4 +1,6 @@
 CapybaraIntegration::Application.routes.draw do
+  resources :users
+
   get "user/name"
 
   get "user/email"
