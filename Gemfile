@@ -26,6 +26,8 @@ end
 gem 'jquery-rails'
 gem 'therubyracer'
 
+gem 'sorcery'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -40,9 +42,12 @@ gem 'therubyracer'
 
 # To use debugger
 # gem 'ruby-debug'
+gem "debugger", "~> 1.1.3"
+
 gem "rspec-rails", :group => [:test, :development]
 group :test do
   gem "factory_girl_rails", '~> 1.7.0'
   gem "capybara"
   gem "guard-rspec"
+  gem "launchy", "~> 2.1.0"
 end

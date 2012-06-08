@@ -1,11 +1,10 @@
 CapybaraIntegration::Application.routes.draw do
   resources :users
+  resources :sessions
 
-  get "user/name"
-
-  get "user/email"
-
-  get "user/hometown"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
