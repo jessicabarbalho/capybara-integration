@@ -42,7 +42,7 @@ gem 'sorcery'
 
 # To use debugger
 # gem 'ruby-debug'
-gem "debugger", "~> 1.1.3"
+# gem "debugger", "~> 1.1.3"
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do

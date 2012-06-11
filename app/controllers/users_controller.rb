@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_login_from_http_basic, :only => [:login_from_http_basic]
+
   # GET /users
   # GET /users.json
   def index
@@ -25,11 +27,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
-    end
   end
 
   # GET /users/1/edit
@@ -40,18 +37,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(:name => params[:name], :email => params[:email],
-                     :password => params[:password], :hometown => params[:hometown])
-    puts @user.inspect
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        format.json { render :json => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
-      end
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to users_path, :notice => "Signed up!"
+    else
+      render :new
     end
   end
 
@@ -82,4 +72,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def activate
+    if @user = User.load_from_activation_token(params[:id])
+      @user.activate!
+      redirect_to(login_path, :notice => 'User was successfully activated.')
+    else
+      not_authenticated
+    end
+  end
+
 end

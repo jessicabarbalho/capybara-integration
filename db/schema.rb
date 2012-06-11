@@ -49,14 +49,15 @@ ActiveRecord::Schema.define(:version => 20120606200918) do
   add_index "relation_types", ["name"], :name => "index_relation_types_on_name"
 
   create_table "users", :force => true do |t|
-    t.string   "name",                         :null => false
+    t.string   "name",                            :null => false
     t.string   "email"
     t.string   "password"
+    t.string   "crypted_password"
     t.string   "hometown"
     t.string   "salt"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "friends_count", :default => 0, :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "friends_count",    :default => 0, :null => false
   end
 
 end
