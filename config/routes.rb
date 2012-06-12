@@ -1,5 +1,7 @@
 CapybaraIntegration::Application.routes.draw do
-  get "sessions/new"
+  get "home/index"
+
+  get "home/secret"
 
   resources :users
   resources :sessions
@@ -7,6 +9,9 @@ CapybaraIntegration::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+
+  get "secret" => "home#secret", :as => "secret"
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
