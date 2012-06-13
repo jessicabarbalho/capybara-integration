@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   # GET /users
   # GET /users.json
   def index
@@ -71,14 +70,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def activate
-    if @user = User.load_from_activation_token(params[:id])
-      @user.activate!
-      redirect_to(login_path, :notice => 'User was successfully activated.')
-    else
-      not_authenticated
-    end
-  end
-
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "SignUps" do
-  it "any person can sign up on the app" do
+  it "Any person can sign up on the app" do
     visit home_index_path
     click_link "Sign up"
     fill_in "Email", :with => "jessicar@redu.com.br"
@@ -16,7 +16,7 @@ describe "SignUps" do
     click_link "Sign up"
     fill_in "Email", :with => "jesica"
     fill_in "Password", :with => "123"
-    click_on 'Create User'
+    click_button 'Create User'
     current_path.should eq(users_path)
     page.should have_content("Password is too short")
     page.should have_content("Email is invalid")

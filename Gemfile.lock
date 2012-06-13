@@ -65,7 +65,6 @@ GEM
       thor (>= 0.14.6)
     guard-rspec (1.0.0)
       guard (>= 1.1)
-    has_friends-rails3 (0.0.4)
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -181,7 +180,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl_rails (~> 1.7.0)
   guard-rspec
-  has_friends-rails3 (~> 0.0.4)
   jquery-rails
   json
   launchy (~> 2.1.0)

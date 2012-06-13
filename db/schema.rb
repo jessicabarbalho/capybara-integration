@@ -10,54 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606200918) do
-
-  create_table "friendship_messages", :force => true do |t|
-    t.string   "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "friendship_relation_types", :force => true do |t|
-    t.integer  "relation_id"
-    t.integer  "friendship_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "friendships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.integer  "friendship_message_id"
-    t.datetime "requested_at"
-    t.datetime "accepted_at"
-    t.string   "status"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-  end
-
-  add_index "friendships", ["friend_id"], :name => "index_friendships_on_friend_id"
-  add_index "friendships", ["status"], :name => "index_friendships_on_status"
-  add_index "friendships", ["user_id"], :name => "index_friendships_on_user_id"
-
-  create_table "relation_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "relation_types", ["name"], :name => "index_relation_types_on_name"
+ActiveRecord::Schema.define(:version => 20120606195608) do
 
   create_table "users", :force => true do |t|
-    t.string   "name",                            :null => false
-    t.string   "email"
+    t.string   "name"
+    t.string   "email",            :null => false
     t.string   "password"
     t.string   "crypted_password"
     t.string   "hometown"
     t.string   "salt"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "friends_count",    :default => 0, :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end

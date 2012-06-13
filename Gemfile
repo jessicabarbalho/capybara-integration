@@ -9,8 +9,6 @@ gem 'sqlite3'
 
 gem 'json'
 
-gem "has_friends-rails3", "~> 0.0.4"
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

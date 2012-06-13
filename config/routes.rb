@@ -1,6 +1,5 @@
 CapybaraIntegration::Application.routes.draw do
   get "home/index"
-
   get "home/secret"
 
   resources :users
