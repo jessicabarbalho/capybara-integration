@@ -10,18 +10,29 @@
     <th></th>
   </tr>
 
+  <span class="notice"></span>
+
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-    <td><%= user.hometown %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% unless current_user.is?(user) %>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.hometown %></td>
+      <% if current_user.friendship_for(user).nil? %>
+        <td><%= link_to 'Add friend', add_friend_path(:user => user) %></td>
+      <% elsif current_user.friendship_for(user).status == "pending" %>
+        <td><%= link_to 'Accept',
+          friend_path(:user => user, :accept => true),
+          :remote => true %></td>
+        <td><%= link_to 'Deny',
+          friend_path(:user => user, :accept => false),
+          :remote => true %></td>
+      <% elsif current_user.friendship_for(user).status == "accepted" %>
+        <td><%= link_to 'Show', user %></td>
+      <% end %>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'Sign Up', new_user_path %>

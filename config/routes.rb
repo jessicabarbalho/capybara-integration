@@ -5,9 +5,12 @@ CapybaraIntegration::Application.routes.draw do
   resources :users
   resources :sessions
 
+  get "signup" => "users#new", :as => "signup"
+  get "add_friend" => "users#add_friend", :as => "add_friend"
+  get "friend" => "users#friend", :as => "friend"
+
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get "signup" => "users#new", :as => "signup"
 
   get "secret" => "home#secret", :as => "secret"
   root :to => "home#index"

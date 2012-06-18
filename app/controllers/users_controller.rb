@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to home_index_path, :notice => "Signed up!"
+      redirect_to users_path, :notice => "Signed up!"
     else
       render :new
     end
@@ -68,6 +68,30 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def add_friend
+    friend = User.find(params[:user])
+    friendship = current_user.be_friends_with(friend)
+
+    redirect_to users_path,
+                :notice => "#{friend.answer_request(friendship)}"
+  end
+
+  def friend
+    friend = User.find(params[:user])
+
+    if params[:accept] == "true"
+      friendship = current_user.be_friends_with(friend)
+      @notice = "You and #{friend.email} are now friends"
+    else
+      friendship = current_user.friendship_for(friend).destroy
+      @notice = "You deny the friendship from #{friend.email}"
+    end
+
+    respond_to do |format|
+      format.js {}
     end
   end
 end

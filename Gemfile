@@ -48,4 +48,5 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem "launchy", "~> 2.1.0"
+  gem 'database_cleaner'
 end

@@ -7,7 +7,7 @@ describe "SignUps" do
     fill_in "Email", :with => "jessicar@redu.com.br"
     fill_in "Password", :with => "123456"
     click_on 'Create User'
-    current_path.should eq(home_index_path)
+    current_path.should eq(users_path)
     page.should have_content("Signed up!")
   end
 
